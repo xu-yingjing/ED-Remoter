@@ -1,11 +1,11 @@
-#define BLINKER_WIFI
+﻿#define BLINKER_WIFI
 #define BLINKER_ESP_SMARTCONFIG
 
 #include <Blinker.h>
 #include <OneButton.h>
 
 #define EDREMOTE_DBG    1               /* 串口编译调试开关 */
-#define BLINKER_AUTH    "00480fc087d5"  /* Blinker设备密钥 */
+#define BLINKER_AUTH    "861129fc28e0"  /* Blinker设备密钥 */
 #define RESET_PIN       10              /* 重置引脚 */
 #define RESET_ACT       LOW             /* 重置引脚有效电平 */
 #define CONNECT_LED_PIN 0               /* WiFi连接状态指示灯引脚 */
