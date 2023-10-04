@@ -83,12 +83,36 @@ static void buttonK1Callback(const String & state)
 
     if (state == BLINKER_CMD_BUTTON_TAP)
     {
+        /* 上升 */
         digitalWrite(REMOTE_K1_PIN, REMOTE_K1_ACT);
         digitalWrite(CONNECT_LED_PIN, !CONNECT_LED_ACT);
-        delay(250);
+        Blinker.delay(250);
         digitalWrite(CONNECT_LED_PIN, !CONNECT_LED_ACT);
-        delay(250);
+        Blinker.delay(250);
         digitalWrite(REMOTE_K1_PIN, !REMOTE_K1_ACT);
+
+        Blinker.vibrate();
+    }
+    else if (state == BLINKER_CMD_BUTTON_PRESS)
+    {
+        /* 暂停后上升 */
+        digitalWrite(REMOTE_K4_PIN, REMOTE_K4_ACT);
+        digitalWrite(CONNECT_LED_PIN, !CONNECT_LED_ACT);
+        Blinker.delay(250);
+        digitalWrite(CONNECT_LED_PIN, !CONNECT_LED_ACT);
+        Blinker.delay(250);
+        digitalWrite(REMOTE_K4_PIN, !REMOTE_K4_ACT);
+        
+        Blinker.delay(250);
+        
+        digitalWrite(REMOTE_K1_PIN, REMOTE_K1_ACT);
+        digitalWrite(CONNECT_LED_PIN, !CONNECT_LED_ACT);
+        Blinker.delay(250);
+        digitalWrite(CONNECT_LED_PIN, !CONNECT_LED_ACT);
+        Blinker.delay(250);
+        digitalWrite(REMOTE_K1_PIN, !REMOTE_K1_ACT);
+
+        Blinker.vibrate();
     }
 }
 static void buttonK2Callback(const String & state)
@@ -99,12 +123,36 @@ static void buttonK2Callback(const String & state)
 
     if (state == BLINKER_CMD_BUTTON_TAP)
     {
+        /* 下降 */
         digitalWrite(REMOTE_K2_PIN, REMOTE_K2_ACT);
         digitalWrite(CONNECT_LED_PIN, !CONNECT_LED_ACT);
-        delay(250);
+        Blinker.delay(250);
         digitalWrite(CONNECT_LED_PIN, !CONNECT_LED_ACT);
-        delay(250);
+        Blinker.delay(250);
         digitalWrite(REMOTE_K2_PIN, !REMOTE_K2_ACT);
+
+        Blinker.vibrate();
+    }
+    else if (state == BLINKER_CMD_BUTTON_PRESS)
+    {
+        /* 暂停后下降 */
+        digitalWrite(REMOTE_K4_PIN, REMOTE_K4_ACT);
+        digitalWrite(CONNECT_LED_PIN, !CONNECT_LED_ACT);
+        Blinker.delay(250);
+        digitalWrite(CONNECT_LED_PIN, !CONNECT_LED_ACT);
+        Blinker.delay(250);
+        digitalWrite(REMOTE_K4_PIN, !REMOTE_K4_ACT);
+        
+        Blinker.delay(250);
+        
+        digitalWrite(REMOTE_K2_PIN, REMOTE_K2_ACT);
+        digitalWrite(CONNECT_LED_PIN, !CONNECT_LED_ACT);
+        Blinker.delay(250);
+        digitalWrite(CONNECT_LED_PIN, !CONNECT_LED_ACT);
+        Blinker.delay(250);
+        digitalWrite(REMOTE_K2_PIN, !REMOTE_K2_ACT);
+
+        Blinker.vibrate();
     }
 }
 static void buttonK3Callback(const String & state)
@@ -115,12 +163,15 @@ static void buttonK3Callback(const String & state)
 
     if (state == BLINKER_CMD_BUTTON_TAP)
     {
+        /* 锁定 */
         digitalWrite(REMOTE_K3_PIN, REMOTE_K3_ACT);
         digitalWrite(CONNECT_LED_PIN, !CONNECT_LED_ACT);
-        delay(250);
+        Blinker.delay(250);
         digitalWrite(CONNECT_LED_PIN, !CONNECT_LED_ACT);
-        delay(250);
+        Blinker.delay(250);
         digitalWrite(REMOTE_K3_PIN, !REMOTE_K3_ACT);
+
+        Blinker.vibrate();
     }
 }
 static void buttonK4Callback(const String & state)
@@ -131,12 +182,15 @@ static void buttonK4Callback(const String & state)
 
     if (state == BLINKER_CMD_BUTTON_TAP)
     {
+        /* 暂停 */
         digitalWrite(REMOTE_K4_PIN, REMOTE_K4_ACT);
         digitalWrite(CONNECT_LED_PIN, !CONNECT_LED_ACT);
-        delay(250);
+        Blinker.delay(250);
         digitalWrite(CONNECT_LED_PIN, !CONNECT_LED_ACT);
-        delay(250);
+        Blinker.delay(250);
         digitalWrite(REMOTE_K4_PIN, !REMOTE_K4_ACT);
+
+        Blinker.vibrate();
     }
 }
 
