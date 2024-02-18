@@ -121,6 +121,8 @@ void mqtt_callback(char *topic, uint8_t *payload, unsigned int length) {
 }
 
 void setup() {
+  uint8_t retry_count;
+
   LEDG_OFF();
   LEDB_OFF();
   pinMode(LEDG_PIN, OUTPUT);
@@ -135,6 +137,7 @@ void setup() {
   REMOTERK3_RELEASE();
   REMOTERK4_RELEASE();
 
+  retry_count = 0;
   WiFi.mode(WIFI_STA);
   WiFi.begin(wifi_ssid, wifi_password);
   while (WiFi.status() != WL_CONNECTED) {
@@ -142,16 +145,28 @@ void setup() {
     LEDB_ON();
     delay(200);
     LEDB_OFF();
+    retry_count++;
+    if (retry_count == 150) {
+      retry_count = 0;
+      ESP.restart();
+    }
   }
   LEDG_ON();
+  delay(1000);
 
   LEDB_ON();
+  retry_count = 0;
   while (!client.connected()) {
     client.setServer(mqtt_broker, mqtt_port);
     client.setCallback(mqtt_callback);
     client_id += String(WiFi.macAddress());
     if (!client.connect(client_id.c_str(), mqtt_username, mqtt_password)) {
-      delay(2000);
+      delay(1000);
+      retry_count++;
+      if (retry_count == 20) {
+        retry_count = 0;
+        ESP.restart();
+      }
     }
   }
   LEDB_OFF();
@@ -160,8 +175,8 @@ void setup() {
 }
 
 void loop() {
-  client.loop();
   if ((WiFi.status() != WL_CONNECTED) || (!client.connected())) {
     ESP.restart();
   }
+  client.loop();
 }
